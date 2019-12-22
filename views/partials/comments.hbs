@@ -1,0 +1,49 @@
+{{#if (gt (length comments) 0)}}
+<div class="comments-list mt-5">
+	<h2>Comments</h2>
+	{{#each comments}}
+		<div class="comment card mb-4 mb-lg-2">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-1 text-right" style="min-width: 70px;">
+						<div class="avatar shadow">
+							<img src="https://www.gravatar.com/avatar/{{md5 (lowercase User.email)}}?d=mp&s=70" alt="Avatar">
+						</div>
+					</div>
+					<div class="col">
+						<h4>
+							{{User.username}}
+							&nbsp;
+							<span 
+								class="text-muted font-weight-normal" 
+								data-toggle="tooltip" 
+								data-placement="right" 
+								title="{{moment created_at 'lll'}}"
+							>
+								{{momento created_at fromNow=false}}
+								&nbsp;
+							</span>
+							{{#if (eq user_id User.uid)}}
+								&nbsp;
+								<a
+									href="javascript:;"
+									onClick="confirmModal('Confirm to delete your comment!', function(){ location.href='/post/{{../postGuid}}/comment/{{guid}}/delete'; }, { okButtonTxt: 'Delete', okButtonType: 'danger' })"
+									class="text-danger"
+								>
+									<i class="fa fa-trash-alt"></i>
+								</a>
+							{{/if}}
+						</h4>
+						<p>
+							{{{markdown comment}}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	{{/each}}
+</div>
+{{/if}}
+<div class="new-comment-form mt-5 mb-5">
+	{{> new-comment this}}
+</div>

@@ -1,0 +1,15 @@
+<h2>New Comment</h2>
+<form
+	method="post"
+	action="/post/{{post.guid}}/comment"
+	{{#if (not isLoggedIn)}}onSubmit="showLoginRequiredModal(); return false"{{/if}}
+>
+	<input type="hidden" name="_csrf" value="{{csrfToken}}" />
+
+	<div class="form-group">
+		<textarea id="comment" class="form-control" name="comment" rows="8" {{#if (not isLoggedIn)}}onClick="showLoginRequiredModal()"{{/if}}></textarea>
+		<p class="text-muted">(Markdown Allowed)</p>
+	</div>
+
+	<button type="submit" class="btn btn-primary btn-block mt-3">Post Comment</button>
+</form>

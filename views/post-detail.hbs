@@ -1,0 +1,27 @@
+<div class="post card mb-4 mb-lg-2">
+	<div class="card-body">
+		<div class="row">
+			<div class="col-2" style="min-width: 120px;">
+				{{> post-vote-box post=post isLoggedIn=isLoggedIn}}
+			</div>
+			<div class="col">
+				<h1>
+					<a href="/post/{{post.guid}}" class="text-dark">
+						{{post.title}}
+					</a>
+				</h1>
+				<p>{{{markdown post.description}}}</p>
+				<p class="text-muted">
+					<span data-toggle="tooltip" data-placement="right" title="{{moment post.created_at 'lll'}}">
+						<i class="far fa-clock"></i>
+						{{momento post.created_at fromNow=true}}
+						&nbsp;
+					</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="post-comments">
+	{{> comments postGuid=post.guid isLoggedIn=isLoggedIn comments=comments}}
+</div>

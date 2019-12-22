@@ -1,0 +1,15 @@
+<div class="row justify-content-md-center">
+	<div class="col-md-6 pt-4">
+		<div class="text-center">
+			<i class="far fa-hg text-success fa-check-circle mb-4"></i>
+			<h1>Post Submitted</h1>
+			<p>Redirecting to the post in 3 seconds...</p>
+			<a href="/post/{{postGuid}}">Go to the post right away &rarr;</a>
+		</div>
+	</div>
+</div>
+<script>
+	setTimeout(function(){
+		location.href='/post/{{postGuid}}';
+	}, 3000)
+</script>
